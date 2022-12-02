@@ -32,6 +32,7 @@ class Products(Base):
     price = models.FloatField()
     top_products = models.BooleanField(default=True)
     discount = models.DecimalField(max_digits=2, decimal_places=2)
+    category = models.ForeignKey(Category, related_name='categorys', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Product'
