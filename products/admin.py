@@ -5,14 +5,14 @@ from .models import Category, Products
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'ativo')
+    list_display = ('name', 'active')
 
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     list_display = (
         'name',
-        'ativo',
+        'active',
         'alias_color',
         'description',
         'qtd',

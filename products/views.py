@@ -1,12 +1,14 @@
-from rest_framework import generics, viewsets, mixins
-from rest_framework.generics import get_object_or_404
+from rest_framework import generics
+from .serializers import CategorySerializer, ProductSerializer
 
 from .models import Category, Products
 
-"""
-API V1
-"""
 
-# class CategoryAPIView(generics.ListCreatAPIView):
-#     queryset = Category.objects.all()
-#     serializer_class =
+class CategorysAPIView(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CategoryAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer

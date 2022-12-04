@@ -1,0 +1,46 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from .models import Category, Products
+from .serializers import ProductSerializer, CategorySerializer
+
+from rest_framework import generics, viewsets, mixins
+from rest_framework.generics import get_object_or_404
+
+"""
+API V1
+"""
+
+
+class CategoryAPIView(APIView):
+    """
+     API de categorias
+    """
+
+    def get(self, request):
+        categorys = Category.objects.all()
+        serializer = CategorySerializer(categorys, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = CategorySerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class ProductsAPIView(APIView):
+    """
+     API de produtos
+    """
+    def get(self, request):
+        products = Products.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

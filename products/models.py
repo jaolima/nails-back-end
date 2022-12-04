@@ -5,7 +5,7 @@ class Base(models.Model):
     name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    ativo = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
 
     class Meta:
         abstract = True
@@ -27,7 +27,7 @@ class Products(Base):
     qtd = models.DecimalField(max_digits=2, decimal_places=2)
     type = models.CharField(max_length=99)
     size = models.DecimalField(max_digits=2, decimal_places=2)
-    barcode = models.TextField(unique=True),
+    barcode = models.CharField(max_length=5000),
     uri_image = models.CharField(max_length=1000)
     price = models.FloatField()
     top_products = models.BooleanField(default=True)
